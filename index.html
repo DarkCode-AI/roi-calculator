@@ -64,11 +64,14 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.15);box-shadow:0
 input[type=range]::-webkit-slider-thumb:active{transform:scale(1.05)}
 input[type=range]:focus-visible{outline:2px solid var(--gold);outline-offset:6px;border-radius:2px}
 
+/* Form controls (shared) */
+.form-control{width:100%;padding:14px 18px;border:1px solid var(--border);border-radius:var(--radius-xs);background:var(--bg-input);color:var(--white);font-family:'Nunito Sans',sans-serif;font-size:1rem;outline:none;transition:border-color .2s,box-shadow .2s}
+.form-control:hover{border-color:var(--border-hover)}
+.form-control:focus{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-glow)}
+.form-control:focus-visible,input[type=email]:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
 /* Select */
-.niche-select{width:100%;padding:14px 18px;border:1px solid var(--border);border-radius:var(--radius-xs);background:var(--bg-input);color:var(--white);font-family:'Nunito Sans',sans-serif;font-size:1rem;outline:none;-webkit-appearance:none;cursor:pointer;transition:border-color .2s,box-shadow .2s}
-.niche-select:hover{border-color:var(--border-hover)}
-.niche-select:focus{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-glow)}
-select:focus-visible,.niche-select:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.niche-select{-webkit-appearance:none;cursor:pointer}
 
 /* Results */
 .results-header{font-family:'Rubik',sans-serif;color:var(--white);font-size:1.15rem;margin-bottom:24px;text-align:center;font-weight:600;letter-spacing:-.3px}
@@ -90,9 +93,7 @@ select:focus-visible,.niche-select:focus-visible{outline:2px solid var(--gold);o
 .email-gate{background:linear-gradient(135deg,var(--bg-card) 0%,#13101d 100%);border:1px solid rgba(201,168,76,.3);border-radius:var(--radius);padding:36px 32px;margin-bottom:20px;text-align:center;box-shadow:0 0 60px var(--gold-glow),inset 0 1px 0 rgba(201,168,76,.15)}
 .email-gate h2{font-family:'Rubik',sans-serif;color:var(--white);font-size:1.3rem;margin-bottom:12px;font-weight:600}
 .email-gate p{color:var(--text-muted);font-size:.9rem;margin-bottom:24px;line-height:1.6;max-width:420px;margin-left:auto;margin-right:auto}
-.email-gate input[type=email]{width:100%;padding:16px 18px;border:1px solid var(--border);border-radius:var(--radius-xs);background:var(--bg-input);color:var(--white);font-family:'Nunito Sans',sans-serif;font-size:1rem;margin-bottom:12px;outline:none;transition:border-color .2s,box-shadow .2s}
-.email-gate input[type=email]:focus{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-glow)}
-input[type=email]:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.email-gate .form-control{margin-bottom:12px}
 
 /* Buttons */
 .btn{width:100%;padding:16px;border:none;border-radius:var(--radius-xs);font-family:'Rubik',sans-serif;font-size:1rem;font-weight:600;cursor:pointer;transition:all .2s;letter-spacing:.3px}
@@ -174,7 +175,7 @@ input[type=email]:focus-visible{outline:2px solid var(--gold);outline-offset:2px
   <div class="card">
     <div class="input-group">
       <label for="niche">Your Industry</label>
-      <select class="niche-select" id="niche" onchange="calculate()">
+      <select class="form-control niche-select" id="niche" onchange="calculate()">
         <option value="dental">Dental Practice</option>
         <option value="real_estate">Real Estate Agency</option>
         <option value="hvac">HVAC / Home Services</option>
@@ -228,7 +229,7 @@ input[type=email]:focus-visible{outline:2px solid var(--gold);outline-offset:2px
     <h2>Unlock Your Full ROI Breakdown</h2>
     <p>Enter your email for the complete report: savings estimate, ROI timeline, annual projections, and a personalized action plan.</p>
     <label for="email" class="sr-only">Email address</label>
-    <input type="email" id="email" placeholder="dr.smith@example.com" aria-label="Email address" required>
+    <input type="email" id="email" class="form-control" placeholder="dr.smith@example.com" aria-label="Email address" required>
     <div class="error-msg" id="error-msg"></div>
     <button class="btn btn-gold" id="submit-btn" onclick="submitEmail()">Show Me the Full Breakdown (Free)</button>
     <div class="trust-bar">
@@ -305,14 +306,14 @@ input[type=email]:focus-visible{outline:2px solid var(--gold);outline-offset:2px
   <div class="footer-cta" id="demo-cta">
     <h3>Most businesses recover their investment in under 3 days</h3>
     <p>See how AI handles your missed calls -- free demo, no commitment</p>
-    <button class="btn btn-gold" style="width:auto;padding:16px 48px;display:inline-block" onclick="requestDemo()">Get a Free Demo</button>
+    <button class="btn btn-gold" id="demo-btn" style="width:auto;padding:16px 48px;display:inline-block" onclick="requestDemo()">Get a Free Demo</button>
     <div id="demo-success" style="display:none;margin-top:16px">
       <p style="color:var(--green);font-size:1rem;font-weight:600">We'll reach out within 24 hours with your personalized demo.</p>
       <p style="color:var(--text-muted);font-size:.85rem;margin-top:6px">Check your inbox for a confirmation from jordan@darkcodeai.com</p>
     </div>
     <div id="demo-form" style="display:none;margin-top:16px">
       <label for="demo-email" class="sr-only">Email address for demo</label>
-      <input type="email" id="demo-email" placeholder="dr.smith@example.com" aria-label="Email address for demo" style="width:100%;padding:16px 18px;border:1px solid var(--border);border-radius:var(--radius-xs);background:var(--bg-input);color:var(--white);font-family:'Nunito Sans',sans-serif;font-size:1rem;margin-bottom:12px;outline:none">
+      <input type="email" id="demo-email" class="form-control" placeholder="dr.smith@example.com" aria-label="Email address for demo" style="margin-bottom:12px">
       <button class="btn btn-gold" onclick="submitDemoEmail()">Send Me a Free Demo</button>
     </div>
   </div>
@@ -328,137 +329,169 @@ input[type=email]:focus-visible{outline:2px solid var(--gold);outline-offset:2px
 <script>
 const NICHE_DEFAULTS={dental:{calls:35,clientVal:800,recep:18},real_estate:{calls:25,clientVal:3000,recep:16},hvac:{calls:40,clientVal:350,recep:17},legal:{calls:20,clientVal:2500,recep:20},medical:{calls:30,clientVal:600,recep:19},other:{calls:30,clientVal:500,recep:18}};
 const AI_COST=297;
+const CAPTURE_RATE=0.85;
+const CONVERSION_RATE=0.3;
+const API_URL='https://darkcode-roi.onrender.com/api/roi-subscribe';
+
+// Cache DOM refs
+const $=id=>document.getElementById(id);
+const el={
+  niche:$('niche'),calls:$('calls'),clientval:$('clientval'),recep:$('recep'),
+  callsVal:$('calls-val'),clientVal:$('client-val'),recepVal:$('recep-val'),
+  missedRev:$('missed-rev'),annualLost:$('annual-lost'),
+  frCaptured:$('fr-captured'),frClients:$('fr-clients'),frRevenue:$('fr-revenue'),
+  frRecepCost:$('fr-recep-cost'),frNetSave:$('fr-net-save'),frTotalImpact:$('fr-total-impact'),
+  frRoi:$('fr-roi'),frPayback:$('fr-payback'),frAnnual:$('fr-annual'),
+  m1Val:$('m1-val'),m3Val:$('m3-val'),m6Val:$('m6-val'),m12Val:$('m12-val'),
+  m1Bar:$('m1-bar'),m3Bar:$('m3-bar'),m6Bar:$('m6-bar'),m12Bar:$('m12-bar'),
+  email:$('email'),errMsg:$('error-msg'),succMsg:$('success-msg'),submitBtn:$('submit-btn'),
+  emailGate:$('email-gate'),fullResults:$('full-results'),
+  demoEmail:$('demo-email'),demoForm:$('demo-form'),demoSuccess:$('demo-success'),
+  demoBtn:$('demo-btn'),demoCta:$('demo-cta'),
+};
+
 let lastNiche='';
+let lastMissedRev=0;
+let resultsVisible=false;
 
 function fmt(n){return'$'+Math.abs(n).toLocaleString('en-US',{maximumFractionDigits:0})}
+function isValidEmail(e){return e&&e.includes('@')&&e.includes('.')}
 
+function getInputs(){
+  return{
+    niche:el.niche.value,
+    calls:parseInt(el.calls.value),
+    clientVal:parseInt(el.clientval.value),
+    recep:parseInt(el.recep.value),
+  };
+}
+
+function _postLead(email,extra){
+  const inp=getInputs();
+  fetch(API_URL,{
+    method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({email,niche:inp.niche,missed_calls:inp.calls,client_value:inp.clientVal,monthly_impact:lastMissedRev,...extra})
+  }).catch(()=>{});
+}
+
+let rafId=0;
 function calculate(){
-  const niche=document.getElementById('niche').value;
+  cancelAnimationFrame(rafId);
+  rafId=requestAnimationFrame(_calculate);
+}
+
+function _calculate(){
+  const niche=el.niche.value;
   if(niche!==lastNiche){
     const d=NICHE_DEFAULTS[niche]||NICHE_DEFAULTS.other;
-    document.getElementById('calls').value=d.calls;
-    document.getElementById('clientval').value=d.clientVal;
-    document.getElementById('recep').value=d.recep;
+    el.calls.value=d.calls;
+    el.clientval.value=d.clientVal;
+    el.recep.value=d.recep;
     lastNiche=niche;
   }
-  const calls=parseInt(document.getElementById('calls').value);
-  const clientVal=parseInt(document.getElementById('clientval').value);
-  const recep=parseInt(document.getElementById('recep').value);
+  const calls=parseInt(el.calls.value);
+  const clientVal=parseInt(el.clientval.value);
+  const recep=parseInt(el.recep.value);
 
-  document.getElementById('calls-val').textContent=calls;
-  document.getElementById('client-val').textContent=fmt(clientVal);
-  document.getElementById('recep-val').textContent=fmt(recep);
+  el.callsVal.textContent=calls;
+  el.clientVal.textContent=fmt(clientVal);
+  el.recepVal.textContent=fmt(recep);
 
-  const missedRev=Math.round(calls*clientVal*0.3);
+  const missedRev=Math.round(calls*clientVal*CONVERSION_RATE);
   const recepCost=Math.round(recep*160);
   const savings=Math.max(0,recepCost-AI_COST);
   const totalImpact=savings+missedRev;
   const annual=totalImpact*12;
   const roi=Math.round((totalImpact/AI_COST)*100);
   const payback=Math.max(1,Math.round(AI_COST/(totalImpact/30)));
-  const captured=Math.round(calls*0.85);
-  const newClients=Math.round(calls*0.3);
+  const captured=Math.round(calls*CAPTURE_RATE);
+  const newClients=Math.round(calls*CONVERSION_RATE);
 
-  document.getElementById('missed-rev').textContent=fmt(missedRev);
-  document.getElementById('annual-lost').textContent=fmt(missedRev*12);
+  lastMissedRev=missedRev;
 
-  document.getElementById('fr-captured').textContent=captured;
-  document.getElementById('fr-clients').textContent=newClients;
-  document.getElementById('fr-revenue').textContent=fmt(missedRev);
-  document.getElementById('fr-recep-cost').textContent=fmt(recepCost)+'/mo';
-  document.getElementById('fr-net-save').textContent=fmt(savings);
-  document.getElementById('fr-total-impact').textContent=fmt(totalImpact);
-  document.getElementById('fr-roi').textContent=roi+'%';
-  document.getElementById('fr-payback').textContent=payback+' days';
-  document.getElementById('fr-annual').textContent=fmt(annual);
+  el.missedRev.textContent=fmt(missedRev);
+  el.annualLost.textContent=fmt(missedRev*12);
 
-  const m1=totalImpact-AI_COST;
-  const m3=totalImpact*3-AI_COST;
-  const m6=totalImpact*6-AI_COST;
-  const m12=annual-AI_COST;
-  document.getElementById('m1-val').textContent=fmt(m1);
-  document.getElementById('m3-val').textContent=fmt(m3);
-  document.getElementById('m6-val').textContent=fmt(m6);
-  document.getElementById('m12-val').textContent=fmt(m12);
+  if(resultsVisible){
+    el.frCaptured.textContent=captured;
+    el.frClients.textContent=newClients;
+    el.frRevenue.textContent=fmt(missedRev);
+    el.frRecepCost.textContent=fmt(recepCost)+'/mo';
+    el.frNetSave.textContent=fmt(savings);
+    el.frTotalImpact.textContent=fmt(totalImpact);
+    el.frRoi.textContent=roi+'%';
+    el.frPayback.textContent=payback+' days';
+    el.frAnnual.textContent=fmt(annual);
 
-  const max=m12||1;
-  document.getElementById('m1-bar').style.width=Math.max(5,m1/max*100)+'%';
-  document.getElementById('m3-bar').style.width=Math.max(5,m3/max*100)+'%';
-  document.getElementById('m6-bar').style.width=Math.max(5,m6/max*100)+'%';
-  document.getElementById('m12-bar').style.width='100%';
+    const m1=totalImpact-AI_COST;
+    const m3=totalImpact*3-AI_COST;
+    const m6=totalImpact*6-AI_COST;
+    const m12=annual-AI_COST;
+    el.m1Val.textContent=fmt(m1);
+    el.m3Val.textContent=fmt(m3);
+    el.m6Val.textContent=fmt(m6);
+    el.m12Val.textContent=fmt(m12);
+
+    const max=m12||1;
+    el.m1Bar.style.width=Math.max(5,m1/max*100)+'%';
+    el.m3Bar.style.width=Math.max(5,m3/max*100)+'%';
+    el.m6Bar.style.width=Math.max(5,m6/max*100)+'%';
+    el.m12Bar.style.width='100%';
+  }
 }
 
-async function submitEmail(){
-  const email=document.getElementById('email').value.trim();
-  const errEl=document.getElementById('error-msg');
-  const succEl=document.getElementById('success-msg');
-  const btn=document.getElementById('submit-btn');
-
-  errEl.style.display='none';
-  if(!email||!email.includes('@')||!email.includes('.')){
-    errEl.textContent='Please enter a valid email address.';
-    errEl.style.display='block';
+function submitEmail(){
+  const email=el.email.value.trim();
+  el.errMsg.style.display='none';
+  if(!isValidEmail(email)){
+    el.errMsg.textContent='Please enter a valid email address.';
+    el.errMsg.style.display='block';
     return;
   }
 
-  btn.disabled=true;
-  btn.textContent='Unlocking...';
+  el.submitBtn.disabled=true;
+  el.submitBtn.textContent='Unlocking...';
+  _postLead(email,{});
 
-  try{
-    fetch('https://darkcode-roi.onrender.com/api/roi-subscribe',{
-      method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({email,niche:document.getElementById('niche').value,
-        missed_calls:parseInt(document.getElementById('calls').value),
-        client_value:parseInt(document.getElementById('clientval').value),
-        monthly_impact:document.getElementById('missed-rev').textContent})
-    }).catch(()=>{});
-  }catch(e){}
+  resultsVisible=true;
+  _calculate();
 
-  succEl.style.display='block';
-  document.getElementById('email-gate').style.borderColor='var(--green)';
-  document.getElementById('full-results').classList.add('show');
-  btn.textContent='Report Unlocked!';
-  setTimeout(()=>{
-    document.getElementById('full-results').scrollIntoView({behavior:'smooth',block:'start'});
-  },200);
+  el.succMsg.style.display='block';
+  el.emailGate.style.borderColor='var(--green)';
+  el.fullResults.classList.add('show');
+  el.submitBtn.textContent='Report Unlocked!';
+  requestAnimationFrame(()=>{
+    requestAnimationFrame(()=>{
+      el.fullResults.scrollIntoView({behavior:'smooth',block:'start'});
+    });
+  });
 }
 
 function requestDemo(){
-  const gateEmail=document.getElementById('email').value.trim();
-  if(gateEmail&&gateEmail.includes('@')&&gateEmail.includes('.')){
+  const gateEmail=el.email.value.trim();
+  if(isValidEmail(gateEmail)){
     _sendDemoRequest(gateEmail);
     return;
   }
-  document.getElementById('demo-form').style.display='block';
-  document.getElementById('demo-email').focus();
+  el.demoForm.style.display='block';
+  el.demoEmail.focus();
 }
 
 function submitDemoEmail(){
-  const email=document.getElementById('demo-email').value.trim();
-  if(!email||!email.includes('@')||!email.includes('.')){
-    document.getElementById('demo-email').style.borderColor='var(--red)';
+  const email=el.demoEmail.value.trim();
+  if(!isValidEmail(email)){
+    el.demoEmail.style.borderColor='var(--red)';
     return;
   }
   _sendDemoRequest(email);
 }
 
 function _sendDemoRequest(email){
-  try{
-    fetch('https://darkcode-roi.onrender.com/api/roi-subscribe',{
-      method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({email,niche:document.getElementById('niche').value,
-        missed_calls:parseInt(document.getElementById('calls').value),
-        client_value:parseInt(document.getElementById('clientval').value),
-        monthly_impact:document.getElementById('missed-rev').textContent,
-        demo_request:true})
-    }).catch(()=>{});
-  }catch(e){}
-
-  document.getElementById('demo-success').style.display='block';
-  document.getElementById('demo-form').style.display='none';
-  const btn=document.querySelector('#demo-cta .btn-gold');
-  if(btn){btn.style.display='none';}
-  document.getElementById('demo-cta').style.borderColor='var(--green)';
+  _postLead(email,{demo_request:true});
+  el.demoSuccess.style.display='block';
+  el.demoForm.style.display='none';
+  if(el.demoBtn){el.demoBtn.style.display='none';}
+  el.demoCta.style.borderColor='var(--green)';
 }
 
 calculate();
