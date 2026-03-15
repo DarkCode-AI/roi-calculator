@@ -12,36 +12,41 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="AI ROI Calculator | DarkCode AI">
 <meta name="twitter:description" content="Calculate how much revenue your business loses to missed calls. Free tool.">
+<link rel="canonical" href="https://jordandev132.github.io/roi-calculator/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>%E2%9A%A1</text></svg>">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#0a0a0f;color:#e0e0e0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.6}
 .container{max-width:720px;margin:0 auto;padding:24px 20px}
 h1{font-size:2rem;color:#fff;text-align:center;margin-bottom:8px;line-height:1.2}
-.subtitle{text-align:center;color:#999;font-size:1rem;margin-bottom:36px}
+.subtitle{text-align:center;color:#b0b0b0;font-size:1rem;margin-bottom:36px}
 .brand{text-align:center;margin-bottom:32px;font-size:.85rem;color:#C9A84C;letter-spacing:2px;text-transform:uppercase}
-.social-proof{text-align:center;background:#12121a;border:1px solid #1e1e2e;border-radius:8px;padding:14px 20px;margin-bottom:28px;font-size:.85rem;color:#999}
+.social-proof{text-align:center;background:#12121a;border:1px solid #1e1e2e;border-radius:8px;padding:14px 20px;margin-bottom:28px;font-size:.85rem;color:#b0b0b0}
 .social-proof strong{color:#C9A84C}
 .calc-section{background:#12121a;border:1px solid #1e1e2e;border-radius:12px;padding:32px;margin-bottom:24px}
 .input-group{margin-bottom:28px}
 .input-group:last-child{margin-bottom:0}
-.input-group label{display:block;font-weight:600;color:#ccc;margin-bottom:8px;font-size:.95rem}
+.input-group label{display:block;font-weight:600;color:#d4d4d4;margin-bottom:8px;font-size:.95rem}
 .input-group .value-display{font-size:1.5rem;color:#C9A84C;font-weight:700;margin-bottom:6px}
 input[type=range]{-webkit-appearance:none;width:100%;height:6px;border-radius:3px;background:#1e1e2e;outline:none}
+input[type=range]:focus-visible{outline:2px solid #C9A84C;outline-offset:4px;border-radius:3px}
+select:focus-visible,.niche-select:focus-visible{outline:2px solid #C9A84C;outline-offset:2px}
+input[type=email]:focus-visible{outline:2px solid #C9A84C;outline-offset:2px}
 input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:#C9A84C;cursor:pointer;box-shadow:0 0 8px rgba(201,168,76,.4)}
 .results{background:#12121a;border:1px solid #1e1e2e;border-radius:12px;padding:32px;margin-bottom:24px}
 .results h2{color:#fff;font-size:1.3rem;margin-bottom:20px;text-align:center}
 .result-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid #1a1a2a}
 .result-row:last-child{border-bottom:none}
-.result-label{color:#999;font-size:.95rem}
+.result-label{color:#b0b0b0;font-size:.95rem}
 .result-value{font-size:1.2rem;font-weight:700;color:#C9A84C}
 .result-value.green{color:#22c55e}
 .result-value.red{color:#ef4444}
 .big-number{font-size:2.6rem;text-align:center;color:#ef4444;font-weight:800;margin:20px 0 4px}
-.big-label{text-align:center;color:#999;font-size:.9rem;margin-bottom:20px}
+.big-label{text-align:center;color:#b0b0b0;font-size:.9rem;margin-bottom:20px}
 .blurred{filter:blur(6px);pointer-events:none;user-select:none}
 .email-gate{background:linear-gradient(135deg,#12121a 0%,#1a1520 100%);border:2px solid #C9A84C;border-radius:12px;padding:32px;margin-bottom:24px;text-align:center}
 .email-gate h2{color:#fff;font-size:1.2rem;margin-bottom:12px}
-.email-gate p{color:#999;font-size:.9rem;margin-bottom:20px;line-height:1.5}
+.email-gate p{color:#b0b0b0;font-size:.9rem;margin-bottom:20px;line-height:1.5}
 .email-gate input[type=email]{width:100%;padding:14px 16px;border:1px solid #2a2a3a;border-radius:8px;background:#0a0a0f;color:#fff;font-size:1rem;margin-bottom:12px;outline:none}
 .email-gate input[type=email]:focus{border-color:#C9A84C}
 .btn{width:100%;padding:14px;border:none;border-radius:8px;font-size:1.05rem;font-weight:700;cursor:pointer;transition:all .2s}
@@ -51,12 +56,12 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 .full-results{display:none}
 .full-results.show{display:block}
 .chart-bar{height:24px;border-radius:4px;margin-bottom:8px;transition:width .6s ease}
-.chart-label{display:flex;justify-content:space-between;font-size:.85rem;color:#999;margin-bottom:16px}
+.chart-label{display:flex;justify-content:space-between;font-size:.85rem;color:#b0b0b0;margin-bottom:16px}
 .testimonial{background:#0a0a0f;border:1px solid #1e1e2e;border-radius:8px;padding:16px 20px;margin:20px 0;font-style:italic;color:#ccc;font-size:.9rem;line-height:1.5}
 .testimonial .author{font-style:normal;color:#C9A84C;font-weight:600;margin-top:8px;font-size:.85rem}
 .footer-cta{text-align:center;padding:32px;background:#12121a;border:1px solid #1e1e2e;border-radius:12px;margin-bottom:24px}
 .footer-cta h3{color:#fff;font-size:1.1rem;margin-bottom:8px}
-.footer-cta p{color:#999;font-size:.9rem;margin-bottom:16px}
+.footer-cta p{color:#b0b0b0;font-size:.9rem;margin-bottom:16px}
 .footer-cta a{display:inline-block;background:#C9A84C;color:#0a0a0f;padding:12px 32px;border-radius:8px;text-decoration:none;font-weight:700;transition:all .2s}
 .footer-cta a:hover{background:#d4af5a;transform:translateY(-1px)}
 .footer{text-align:center;padding:24px 0;border-top:1px solid #1a1a2a;margin-top:24px}
@@ -68,10 +73,12 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 .niche-select:focus{border-color:#C9A84C}
 .trust-bar{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin:16px 0 8px;font-size:.8rem;color:#666}
 .trust-bar span{display:flex;align-items:center;gap:4px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 @media(max-width:500px){h1{font-size:1.5rem}.container{padding:16px 14px}.calc-section,.results,.email-gate,.footer-cta{padding:20px}.big-number{font-size:2rem}}
 </style>
 </head>
 <body>
+<main>
 <div class="container">
   <div class="brand">DarkCode AI</div>
   <h1>The Average Small Business Loses $4,500/Month to Missed Calls</h1>
@@ -81,8 +88,8 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 
   <div class="calc-section">
     <div class="input-group">
-      <label>Your Industry</label>
-      <select class="niche-select" id="niche" onchange="calculate()">
+      <label for="niche">Your Industry</label>
+      <select class="niche-select" id="niche" aria-label="Select your industry" onchange="calculate()">
         <option value="dental">Dental Practice</option>
         <option value="real_estate">Real Estate Agency</option>
         <option value="hvac">HVAC / Home Services</option>
@@ -92,19 +99,19 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
       </select>
     </div>
     <div class="input-group">
-      <label>Missed Calls Per Month</label>
+      <label for="calls">Missed Calls Per Month</label>
       <div class="value-display" id="calls-val">30</div>
-      <input type="range" id="calls" min="5" max="200" value="30" oninput="calculate()">
+      <input type="range" id="calls" min="5" max="200" value="30" aria-label="Missed calls per month" oninput="calculate()">
     </div>
     <div class="input-group">
-      <label>Average Client Value ($)</label>
+      <label for="clientval">Average Client Value ($)</label>
       <div class="value-display" id="client-val">$500</div>
-      <input type="range" id="clientval" min="50" max="5000" step="50" value="500" oninput="calculate()">
+      <input type="range" id="clientval" min="50" max="5000" step="50" value="500" aria-label="Average client value in dollars" oninput="calculate()">
     </div>
     <div class="input-group">
-      <label>Receptionist Hourly Cost ($)</label>
+      <label for="recep">Receptionist Hourly Cost ($)</label>
       <div class="value-display" id="recep-val">$18</div>
-      <input type="range" id="recep" min="10" max="40" value="18" oninput="calculate()">
+      <input type="range" id="recep" min="10" max="40" value="18" aria-label="Receptionist hourly cost in dollars" oninput="calculate()">
     </div>
   </div>
 
@@ -137,7 +144,8 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
   <div class="email-gate" id="email-gate">
     <h2>Unlock Your Full ROI Breakdown</h2>
     <p>Enter your email for the complete report: savings estimate, ROI timeline, annual projections, and a personalized action plan.</p>
-    <input type="email" id="email" placeholder="dr.smith@example.com" required>
+    <label for="email" class="sr-only">Email address</label>
+    <input type="email" id="email" placeholder="dr.smith@example.com" aria-label="Email address" required>
     <div class="error-msg" id="error-msg"></div>
     <button class="btn btn-gold" id="submit-btn" onclick="submitEmail()">Show Me the Full Breakdown (Free)</button>
     <div class="trust-bar">
@@ -221,7 +229,8 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
       <p style="color:#999;font-size:.85rem;margin-top:6px">Check your inbox for a confirmation from jordan@darkcodeai.com</p>
     </div>
     <div id="demo-form" style="display:none;margin-top:16px">
-      <input type="email" id="demo-email" placeholder="dr.smith@example.com" style="width:100%;padding:14px 16px;border:1px solid #2a2a3a;border-radius:8px;background:#0a0a0f;color:#fff;font-size:1rem;margin-bottom:12px;outline:none">
+      <label for="demo-email" class="sr-only">Email address for demo</label>
+      <input type="email" id="demo-email" placeholder="dr.smith@example.com" aria-label="Email address for demo" style="width:100%;padding:14px 16px;border:1px solid #2a2a3a;border-radius:8px;background:#0a0a0f;color:#fff;font-size:1rem;margin-bottom:12px;outline:none">
       <button class="btn btn-gold" onclick="submitDemoEmail()">Send Me a Free Demo</button>
     </div>
   </div>
@@ -231,6 +240,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
     <p>Questions? <a href="mailto:jordan@darkcodeai.com">jordan@darkcodeai.com</a></p>
   </div>
 </div>
+</main>
 
 <script>
 const NICHE_DEFAULTS={dental:{calls:35,clientVal:800,recep:18},real_estate:{calls:25,clientVal:3000,recep:16},hvac:{calls:40,clientVal:350,recep:17},legal:{calls:20,clientVal:2500,recep:20},medical:{calls:30,clientVal:600,recep:19},other:{calls:30,clientVal:500,recep:18}};
