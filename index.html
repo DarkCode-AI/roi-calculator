@@ -212,10 +212,18 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
     </div>
   </div>
 
-  <div class="footer-cta">
+  <div class="footer-cta" id="demo-cta">
     <h3>Most businesses recover their investment in under 3 days</h3>
     <p>See how AI handles your missed calls -- free demo, no commitment</p>
-    <a href="mailto:jordan@darkcodeai.com?subject=Free%20Demo%20Request%20-%20ROI%20Calculator">Get a Free Demo</a>
+    <button class="btn btn-gold" style="width:auto;padding:14px 40px;display:inline-block" onclick="requestDemo()">Get a Free Demo</button>
+    <div id="demo-success" style="display:none;margin-top:16px">
+      <p style="color:#22c55e;font-size:1rem;font-weight:600">We'll reach out within 24 hours with your personalized demo.</p>
+      <p style="color:#999;font-size:.85rem;margin-top:6px">Check your inbox for a confirmation from jordan@darkcodeai.com</p>
+    </div>
+    <div id="demo-form" style="display:none;margin-top:16px">
+      <input type="email" id="demo-email" placeholder="dr.smith@example.com" style="width:100%;padding:14px 16px;border:1px solid #2a2a3a;border-radius:8px;background:#0a0a0f;color:#fff;font-size:1rem;margin-bottom:12px;outline:none">
+      <button class="btn btn-gold" onclick="submitDemoEmail()">Send Me a Free Demo</button>
+    </div>
   </div>
 
   <div class="footer">
@@ -324,6 +332,48 @@ async function submitEmail(){
   setTimeout(()=>{
     document.getElementById('full-results').scrollIntoView({behavior:'smooth',block:'start'});
   },200);
+}
+
+function requestDemo(){
+  // If email already captured from the gate, use it directly
+  const gateEmail=document.getElementById('email').value.trim();
+  if(gateEmail&&gateEmail.includes('@')&&gateEmail.includes('.')){
+    _sendDemoRequest(gateEmail);
+    return;
+  }
+  // Otherwise show inline email form
+  document.getElementById('demo-form').style.display='block';
+  document.getElementById('demo-email').focus();
+}
+
+function submitDemoEmail(){
+  const email=document.getElementById('demo-email').value.trim();
+  if(!email||!email.includes('@')||!email.includes('.')){
+    document.getElementById('demo-email').style.borderColor='#ef4444';
+    return;
+  }
+  _sendDemoRequest(email);
+}
+
+function _sendDemoRequest(email){
+  // Fire notification to Pro (TG alert to Jordan)
+  try{
+    fetch('https://darkcode-roi.onrender.com/api/roi-subscribe',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({email,niche:document.getElementById('niche').value,
+        missed_calls:parseInt(document.getElementById('calls').value),
+        client_value:parseInt(document.getElementById('clientval').value),
+        monthly_impact:document.getElementById('missed-rev').textContent,
+        demo_request:true})
+    }).catch(()=>{});
+  }catch(e){}
+
+  // Show success state
+  document.getElementById('demo-success').style.display='block';
+  document.getElementById('demo-form').style.display='none';
+  const btn=document.querySelector('#demo-cta .btn-gold');
+  if(btn){btn.style.display='none';}
+  document.getElementById('demo-cta').style.borderColor='#22c55e';
 }
 
 calculate();
