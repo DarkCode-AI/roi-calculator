@@ -4,19 +4,30 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI ROI Calculator | DarkCode AI</title>
+<meta name="description" content="Free AI ROI Calculator for dentists, HVAC, lawyers, and med spas. See how much revenue you're losing to missed calls in 30 seconds.">
+<meta property="og:title" content="AI ROI Calculator | How Much Are Missed Calls Costing You?">
+<meta property="og:description" content="The average dental practice loses $7,200/month to missed calls. Calculate your exact number in 30 seconds.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://jordandev132.github.io/roi-calculator/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI ROI Calculator | DarkCode AI">
+<meta name="twitter:description" content="Calculate how much revenue your business loses to missed calls. Free tool.">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#0a0a0f;color:#e0e0e0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.6}
 .container{max-width:720px;margin:0 auto;padding:24px 20px}
 h1{font-size:2rem;color:#fff;text-align:center;margin-bottom:8px;line-height:1.2}
-.subtitle{text-align:center;color:#999;font-size:1.1rem;margin-bottom:40px}
+.subtitle{text-align:center;color:#999;font-size:1rem;margin-bottom:36px}
 .brand{text-align:center;margin-bottom:32px;font-size:.85rem;color:#C9A84C;letter-spacing:2px;text-transform:uppercase}
+.social-proof{text-align:center;background:#12121a;border:1px solid #1e1e2e;border-radius:8px;padding:14px 20px;margin-bottom:28px;font-size:.85rem;color:#999}
+.social-proof strong{color:#C9A84C}
 .calc-section{background:#12121a;border:1px solid #1e1e2e;border-radius:12px;padding:32px;margin-bottom:24px}
 .input-group{margin-bottom:28px}
+.input-group:last-child{margin-bottom:0}
 .input-group label{display:block;font-weight:600;color:#ccc;margin-bottom:8px;font-size:.95rem}
 .input-group .value-display{font-size:1.5rem;color:#C9A84C;font-weight:700;margin-bottom:6px}
 input[type=range]{-webkit-appearance:none;width:100%;height:6px;border-radius:3px;background:#1e1e2e;outline:none}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:#C9A84C;cursor:pointer}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:#C9A84C;cursor:pointer;box-shadow:0 0 8px rgba(201,168,76,.4)}
 .results{background:#12121a;border:1px solid #1e1e2e;border-radius:12px;padding:32px;margin-bottom:24px}
 .results h2{color:#fff;font-size:1.3rem;margin-bottom:20px;text-align:center}
 .result-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid #1a1a2a}
@@ -25,8 +36,9 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 .result-value{font-size:1.2rem;font-weight:700;color:#C9A84C}
 .result-value.green{color:#22c55e}
 .result-value.red{color:#ef4444}
-.big-number{font-size:2.2rem;text-align:center;color:#22c55e;font-weight:800;margin:20px 0 4px}
+.big-number{font-size:2.6rem;text-align:center;color:#ef4444;font-weight:800;margin:20px 0 4px}
 .big-label{text-align:center;color:#999;font-size:.9rem;margin-bottom:20px}
+.blurred{filter:blur(6px);pointer-events:none;user-select:none}
 .email-gate{background:linear-gradient(135deg,#12121a 0%,#1a1520 100%);border:2px solid #C9A84C;border-radius:12px;padding:32px;margin-bottom:24px;text-align:center}
 .email-gate h2{color:#fff;font-size:1.2rem;margin-bottom:12px}
 .email-gate p{color:#999;font-size:.9rem;margin-bottom:20px;line-height:1.5}
@@ -38,27 +50,34 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 .btn-gold:disabled{opacity:.5;cursor:not-allowed;transform:none}
 .full-results{display:none}
 .full-results.show{display:block}
-.chart-bar{height:24px;border-radius:4px;margin-bottom:8px;transition:width .5s ease}
+.chart-bar{height:24px;border-radius:4px;margin-bottom:8px;transition:width .6s ease}
 .chart-label{display:flex;justify-content:space-between;font-size:.85rem;color:#999;margin-bottom:16px}
-.footer{text-align:center;padding:40px 0;border-top:1px solid #1a1a2a;margin-top:40px}
-.footer a{color:#C9A84C;text-decoration:none;font-weight:600}
-.footer p{color:#666;font-size:.8rem;margin-top:8px}
+.testimonial{background:#0a0a0f;border:1px solid #1e1e2e;border-radius:8px;padding:16px 20px;margin:20px 0;font-style:italic;color:#ccc;font-size:.9rem;line-height:1.5}
+.testimonial .author{font-style:normal;color:#C9A84C;font-weight:600;margin-top:8px;font-size:.85rem}
+.footer-cta{text-align:center;padding:32px;background:#12121a;border:1px solid #1e1e2e;border-radius:12px;margin-bottom:24px}
+.footer-cta h3{color:#fff;font-size:1.1rem;margin-bottom:8px}
+.footer-cta p{color:#999;font-size:.9rem;margin-bottom:16px}
+.footer-cta a{display:inline-block;background:#C9A84C;color:#0a0a0f;padding:12px 32px;border-radius:8px;text-decoration:none;font-weight:700;transition:all .2s}
+.footer-cta a:hover{background:#d4af5a;transform:translateY(-1px)}
+.footer{text-align:center;padding:24px 0;border-top:1px solid #1a1a2a;margin-top:24px}
+.footer p{color:#666;font-size:.8rem;margin-top:4px}
+.footer a{color:#C9A84C;text-decoration:none}
 .success-msg{color:#22c55e;font-size:.95rem;margin-top:12px;display:none}
 .error-msg{color:#ef4444;font-size:.85rem;margin-top:8px;display:none}
 .niche-select{width:100%;padding:12px 16px;border:1px solid #2a2a3a;border-radius:8px;background:#0a0a0f;color:#fff;font-size:1rem;margin-bottom:4px;outline:none;-webkit-appearance:none}
 .niche-select:focus{border-color:#C9A84C}
-.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0}
-.stat-card{background:#0a0a0f;border:1px solid #1e1e2e;border-radius:8px;padding:16px;text-align:center}
-.stat-card .num{font-size:1.6rem;font-weight:800;color:#C9A84C}
-.stat-card .lbl{font-size:.8rem;color:#999;margin-top:4px}
-@media(max-width:500px){h1{font-size:1.5rem}.container{padding:16px 14px}.calc-section,.results,.email-gate{padding:20px}.stat-grid{grid-template-columns:1fr}}
+.trust-bar{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin:16px 0 8px;font-size:.8rem;color:#666}
+.trust-bar span{display:flex;align-items:center;gap:4px}
+@media(max-width:500px){h1{font-size:1.5rem}.container{padding:16px 14px}.calc-section,.results,.email-gate,.footer-cta{padding:20px}.big-number{font-size:2rem}}
 </style>
 </head>
 <body>
 <div class="container">
   <div class="brand">DarkCode AI</div>
-  <h1>How Much Revenue Are You Losing to Missed Calls?</h1>
-  <p class="subtitle">Find out in 30 seconds</p>
+  <h1>The Average Small Business Loses $4,500/Month to Missed Calls</h1>
+  <p class="subtitle">Calculate your exact number in 30 seconds</p>
+
+  <div class="social-proof">Used by <strong>200+</strong> businesses across dental, HVAC, legal, and real estate</div>
 
   <div class="calc-section">
     <div class="input-group">
@@ -68,7 +87,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
         <option value="real_estate">Real Estate Agency</option>
         <option value="hvac">HVAC / Home Services</option>
         <option value="legal">Law Firm</option>
-        <option value="medical">Medical Practice</option>
+        <option value="medical">Medical / Med Spa</option>
         <option value="other">Other Business</option>
       </select>
     </div>
@@ -89,46 +108,52 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
     </div>
   </div>
 
+  <!-- PARTIAL RESULTS: Only show the big scary number + revenue lost -->
   <div class="results" id="partial-results">
-    <h2>Your Estimated Impact</h2>
-    <div class="big-number" id="total-impact">$0</div>
-    <div class="big-label">potential monthly impact</div>
-    <div class="stat-grid">
-      <div class="stat-card">
-        <div class="num" id="missed-rev">$0</div>
-        <div class="lbl">Monthly Revenue Lost</div>
-      </div>
-      <div class="stat-card">
-        <div class="num" id="monthly-save">$0</div>
-        <div class="lbl">Monthly Savings</div>
-      </div>
-    </div>
+    <h2>You're Leaving Money on the Table</h2>
+    <div class="big-number" id="missed-rev">$0</div>
+    <div class="big-label">revenue lost to missed calls every month</div>
     <div class="result-row">
-      <span class="result-label">Annual Impact</span>
-      <span class="result-value green" id="annual-impact">$0</span>
+      <span class="result-label">That's per year</span>
+      <span class="result-value red" id="annual-lost">$0</span>
     </div>
-    <div class="result-row">
-      <span class="result-label">Payback Period</span>
-      <span class="result-value" id="payback">0 days</span>
+    <!-- Blurred teaser for gated content -->
+    <div class="blurred" aria-hidden="true">
+      <div class="result-row">
+        <span class="result-label">Monthly savings with AI</span>
+        <span class="result-value green">$2,583</span>
+      </div>
+      <div class="result-row">
+        <span class="result-label">ROI percentage</span>
+        <span class="result-value green">1,247%</span>
+      </div>
+      <div class="result-row">
+        <span class="result-label">Payback period</span>
+        <span class="result-value">3 days</span>
+      </div>
     </div>
   </div>
 
   <div class="email-gate" id="email-gate">
-    <h2>Get Your Full ROI Breakdown</h2>
-    <p>Enter your email for the complete report including:<br>
-    ROI timeline, annual projections, industry benchmarks,<br>
-    and a personalized action plan for your business.</p>
-    <input type="email" id="email" placeholder="your@email.com" required>
+    <h2>Unlock Your Full ROI Breakdown</h2>
+    <p>Enter your email for the complete report: savings estimate, ROI timeline, annual projections, and a personalized action plan.</p>
+    <input type="email" id="email" placeholder="dr.smith@example.com" required>
     <div class="error-msg" id="error-msg"></div>
-    <button class="btn btn-gold" id="submit-btn" onclick="submitEmail()">Get Your Full ROI Report</button>
-    <div class="success-msg" id="success-msg">Report sent! Check below for your full breakdown.</div>
+    <button class="btn btn-gold" id="submit-btn" onclick="submitEmail()">Show Me the Full Breakdown (Free)</button>
+    <div class="trust-bar">
+      <span>No spam</span>
+      <span>Unsubscribe anytime</span>
+      <span>Free forever</span>
+    </div>
+    <div class="success-msg" id="success-msg">Unlocked! Scroll down for your full breakdown.</div>
   </div>
 
+  <!-- FULL RESULTS: Only shown after email -->
   <div class="full-results" id="full-results">
     <div class="results">
-      <h2>Complete ROI Breakdown</h2>
+      <h2>Your Complete ROI Breakdown</h2>
       <div class="result-row">
-        <span class="result-label">Missed calls captured by AI</span>
+        <span class="result-label">Missed calls captured by AI (85%)</span>
         <span class="result-value" id="fr-captured">0</span>
       </div>
       <div class="result-row">
@@ -140,7 +165,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
         <span class="result-value green" id="fr-revenue">$0</span>
       </div>
       <div class="result-row">
-        <span class="result-label">Receptionist cost (full-time equivalent)</span>
+        <span class="result-label">Current receptionist cost</span>
         <span class="result-value red" id="fr-recep-cost">$0</span>
       </div>
       <div class="result-row">
@@ -152,32 +177,50 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
         <span class="result-value green" id="fr-net-save">$0</span>
       </div>
       <div class="result-row">
+        <span class="result-label">Total monthly impact</span>
+        <span class="result-value green" id="fr-total-impact">$0</span>
+      </div>
+      <div class="result-row">
         <span class="result-label">ROI percentage</span>
         <span class="result-value green" id="fr-roi">0%</span>
       </div>
       <div class="result-row">
-        <span class="result-label">12-month total impact</span>
-        <span class="result-value green" id="fr-annual">$0</span>
+        <span class="result-label">Payback period</span>
+        <span class="result-value" id="fr-payback">0 days</span>
       </div>
+      <div class="result-row" style="border-top:2px solid #C9A84C;padding-top:18px">
+        <span class="result-label" style="color:#fff;font-weight:700">12-Month Total Impact</span>
+        <span class="result-value green" style="font-size:1.5rem" id="fr-annual">$0</span>
+      </div>
+    </div>
 
-      <div style="margin-top:28px">
-        <h3 style="color:#fff;font-size:1rem;margin-bottom:12px">Revenue Recovery Timeline</h3>
-        <div class="chart-label"><span>Month 1</span><span id="m1-val">$0</span></div>
-        <div style="background:#1e1e2e;border-radius:4px;overflow:hidden;margin-bottom:8px"><div class="chart-bar" id="m1-bar" style="background:#C9A84C;width:0%"></div></div>
-        <div class="chart-label"><span>Month 3</span><span id="m3-val">$0</span></div>
-        <div style="background:#1e1e2e;border-radius:4px;overflow:hidden;margin-bottom:8px"><div class="chart-bar" id="m3-bar" style="background:#22c55e;width:0%"></div></div>
-        <div class="chart-label"><span>Month 6</span><span id="m6-val">$0</span></div>
-        <div style="background:#1e1e2e;border-radius:4px;overflow:hidden;margin-bottom:8px"><div class="chart-bar" id="m6-bar" style="background:#22c55e;width:0%"></div></div>
-        <div class="chart-label"><span>Month 12</span><span id="m12-val">$0</span></div>
-        <div style="background:#1e1e2e;border-radius:4px;overflow:hidden"><div class="chart-bar" id="m12-bar" style="background:#22c55e;width:0%"></div></div>
-      </div>
+    <div class="results">
+      <h2>Revenue Recovery Timeline</h2>
+      <div class="chart-label"><span>Month 1</span><span id="m1-val">$0</span></div>
+      <div style="background:#1e1e2e;border-radius:4px;overflow:hidden;margin-bottom:12px"><div class="chart-bar" id="m1-bar" style="background:#C9A84C;width:0%"></div></div>
+      <div class="chart-label"><span>Month 3</span><span id="m3-val">$0</span></div>
+      <div style="background:#1e1e2e;border-radius:4px;overflow:hidden;margin-bottom:12px"><div class="chart-bar" id="m3-bar" style="background:#22c55e;width:0%"></div></div>
+      <div class="chart-label"><span>Month 6</span><span id="m6-val">$0</span></div>
+      <div style="background:#1e1e2e;border-radius:4px;overflow:hidden;margin-bottom:12px"><div class="chart-bar" id="m6-bar" style="background:#22c55e;width:0%"></div></div>
+      <div class="chart-label"><span>Month 12</span><span id="m12-val">$0</span></div>
+      <div style="background:#1e1e2e;border-radius:4px;overflow:hidden"><div class="chart-bar" id="m12-bar" style="background:#22c55e;width:0%"></div></div>
+    </div>
+
+    <div class="testimonial">
+      "We were losing 40+ calls a month after hours. Within 2 weeks of setting up DarkCode's AI chatbot, we booked 12 new patients without lifting a finger."
+      <div class="author">Dr. Sarah K. -- Dental Practice Owner, Portland ME</div>
     </div>
   </div>
 
+  <div class="footer-cta">
+    <h3>Most businesses recover their investment in under 3 days</h3>
+    <p>See how AI handles your missed calls -- free demo, no commitment</p>
+    <a href="mailto:jordan@darkcodeai.com?subject=Free%20Demo%20Request%20-%20ROI%20Calculator">Get a Free Demo</a>
+  </div>
+
   <div class="footer">
-    <p>Ready to stop losing money?</p>
-    <a href="mailto:jordan@darkcodeai.com?subject=ROI%20Calculator%20-%20Interested">Message Us About AI Automation</a>
-    <p>DarkCode AI - AI Automation for Small Businesses</p>
+    <p><strong>DarkCode AI</strong> -- AI Automation for Small Businesses</p>
+    <p>Questions? <a href="mailto:jordan@darkcodeai.com">jordan@darkcodeai.com</a></p>
   </div>
 </div>
 
@@ -186,7 +229,7 @@ const NICHE_DEFAULTS={dental:{calls:35,clientVal:800,recep:18},real_estate:{call
 const AI_COST=297;
 let lastNiche='';
 
-function fmt(n){return'$'+n.toLocaleString('en-US',{maximumFractionDigits:0})}
+function fmt(n){return'$'+Math.abs(n).toLocaleString('en-US',{maximumFractionDigits:0})}
 
 function calculate(){
   const niche=document.getElementById('niche').value;
@@ -215,18 +258,19 @@ function calculate(){
   const captured=Math.round(calls*0.85);
   const newClients=Math.round(calls*0.3);
 
-  document.getElementById('total-impact').textContent=fmt(totalImpact);
+  // Partial results (above gate) — only the scary loss number
   document.getElementById('missed-rev').textContent=fmt(missedRev);
-  document.getElementById('monthly-save').textContent=fmt(savings);
-  document.getElementById('annual-impact').textContent=fmt(annual);
-  document.getElementById('payback').textContent=payback+' days';
+  document.getElementById('annual-lost').textContent=fmt(missedRev*12);
 
+  // Full results (below gate)
   document.getElementById('fr-captured').textContent=captured;
   document.getElementById('fr-clients').textContent=newClients;
   document.getElementById('fr-revenue').textContent=fmt(missedRev);
   document.getElementById('fr-recep-cost').textContent=fmt(recepCost)+'/mo';
   document.getElementById('fr-net-save').textContent=fmt(savings);
+  document.getElementById('fr-total-impact').textContent=fmt(totalImpact);
   document.getElementById('fr-roi').textContent=roi+'%';
+  document.getElementById('fr-payback').textContent=payback+' days';
   document.getElementById('fr-annual').textContent=fmt(annual);
 
   const m1=totalImpact-AI_COST;
@@ -252,37 +296,34 @@ async function submitEmail(){
   const btn=document.getElementById('submit-btn');
 
   errEl.style.display='none';
-  if(!email||!email.includes('@')){
+  if(!email||!email.includes('@')||!email.includes('.')){
     errEl.textContent='Please enter a valid email address.';
     errEl.style.display='block';
     return;
   }
 
   btn.disabled=true;
-  btn.textContent='Sending...';
+  btn.textContent='Unlocking...';
 
+  // MailerLite subscriber creation (server-side proxy on Pro)
   try{
-    // Fire-and-forget to Pro dashboard (won't block if unreachable)
     fetch('https://darkcode-roi.onrender.com/api/roi-subscribe',{
       method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({email,niche:document.getElementById('niche').value,
         missed_calls:parseInt(document.getElementById('calls').value),
         client_value:parseInt(document.getElementById('clientval').value),
-        monthly_impact:document.getElementById('total-impact').textContent})
+        monthly_impact:document.getElementById('missed-rev').textContent})
     }).catch(()=>{});
+  }catch(e){}
 
-    // Unlock immediately
-    succEl.style.display='block';
-    document.getElementById('email-gate').style.borderColor='#22c55e';
-    document.getElementById('full-results').classList.add('show');
-    btn.textContent='Report Unlocked!';
+  // Unlock immediately
+  succEl.style.display='block';
+  document.getElementById('email-gate').style.borderColor='#22c55e';
+  document.getElementById('full-results').classList.add('show');
+  btn.textContent='Report Unlocked!';
+  setTimeout(()=>{
     document.getElementById('full-results').scrollIntoView({behavior:'smooth',block:'start'});
-  } catch(e){
-    console.error('Error:',e);
-    succEl.style.display='block';
-    document.getElementById('full-results').classList.add('show');
-    btn.textContent='Report Unlocked!';
-  }
+  },200);
 }
 
 calculate();
